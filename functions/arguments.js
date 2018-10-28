@@ -5,8 +5,9 @@ let getScore = function(name = 'Aure', score = 0) {
 let result = getScore(undefined, 100)
 console.log(result);
 
+
 let tip = function(amount, tip = .2) {
-  return amount + (amount * tip)
+  return `A ${tip * 100}% tip on $${amount} would be $${amount * tip}`
 }
 
 let billOne = tip(20)
