@@ -1,5 +1,5 @@
-let calcGrad = function (score, maxScore = 20) {
-  let percent = score / maxScore * 100
+const calcGrad = function (score, maxScore = 20) {
+  const percent = score / maxScore * 100
   let gradeLetter
 
   if (percent >= 90) {
