@@ -5,4 +5,8 @@ todos.push('train')
 todos.shift()
 
 console.log(`You have ${todos.length} todos`);
-console.log(todos);
+
+todos.forEach(function(todo, index) {
+  const num = index + 1
+  console.log(`${num}. ${todo}`);
+})
