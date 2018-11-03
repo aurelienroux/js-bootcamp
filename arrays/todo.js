@@ -1,3 +1,8 @@
 const todos = ['clean', 'eat', 'drink', 'sleep', 'run']
 
-console.log(`You have ${todos.length} todos. Todos: ${todos[0]} and ${todos[todos.length - 2]}`);
+todos.splice(2, 1)
+todos.push('train')
+todos.shift()
+
+console.log(`You have ${todos.length} todos`);
+console.log(todos);
