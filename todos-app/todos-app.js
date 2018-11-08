@@ -30,7 +30,7 @@ todos.forEach(function(todo, index) {
   document.body.appendChild(todoTag)
 })
 
-const button = document.querySelector('button')
+const button = document.querySelector('#add-todo')
 button.addEventListener('click', function() {
   console.log('clicked');
 })
