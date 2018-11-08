@@ -9,20 +9,7 @@ const notes = [{
   body: 'get a new seat'
 }]
 
-const p = document.querySelector('p')
-console.log(p);
-
-const allP = document.querySelectorAll('p')
-console.log(allP);
-
-// allP.forEach(function(p) {
-//   console.log(p.textContent)
-//   p.textContent = 'changed'
-//   console.log(p.textContent)
-//   // p.remove()
-// })
-
-// Add a new element
-const newParagraph = document.createElement('p')
-newParagraph.textContent = 'created from js'
-document.querySelector('body').append(newParagraph)
+document.querySelector('button').addEventListener('click', function (e) {
+  console.log(e);
+  e.target.textContent = 'hey'
+})

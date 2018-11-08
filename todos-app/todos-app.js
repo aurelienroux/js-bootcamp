@@ -29,3 +29,8 @@ todos.forEach(function(todo, index) {
   todoTag.textContent = `${todoPosition}. ${todo.text}`
   document.body.appendChild(todoTag)
 })
+
+const button = document.querySelector('button')
+button.addEventListener('click', function() {
+  console.log('clicked');
+})
