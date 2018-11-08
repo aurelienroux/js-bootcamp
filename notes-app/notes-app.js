@@ -18,3 +18,7 @@ document.querySelector('#remove-all').addEventListener('click', function () {
 document.querySelector('#create-note').addEventListener('click', function () {
   console.log('create note');
 })
+
+document.querySelector('#search-text').addEventListener('input', function(e) {
+  console.log(e.target.value);
+})

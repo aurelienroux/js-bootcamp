@@ -34,3 +34,8 @@ const button = document.querySelector('#add-todo')
 button.addEventListener('click', function() {
   console.log('clicked');
 })
+
+const inputFilter = document.querySelector('#search-todos')
+inputFilter.addEventListener('input', function(e) {
+  console.log(e.target.value);
+})
