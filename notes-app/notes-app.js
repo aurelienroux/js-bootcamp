@@ -26,16 +26,17 @@ const renderNotes = function (notes, searchTerm) {
 
 renderNotes(notes, '')
 
-document.querySelector('#remove-all').addEventListener('click', function () {
-  document.querySelectorAll('.notes').forEach(function (note) {
-    note.remove()
-  })
-})
 
 document.querySelector('#create-note').addEventListener('click', function () {
-  console.log('create note');
+  console.log('create note')
 })
 
 document.querySelector('#search-text').addEventListener('input', function (e) {
   renderNotes(notes, e.target.value)
+})
+
+document.querySelector('#name-form').addEventListener('submit', function (e) {
+  e.preventDefault()
+  console.log(e.target.elements.firstName.value)
+  e.target.elements.firstName.value = ''
 })
