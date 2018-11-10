@@ -26,7 +26,6 @@ const renderNotes = function (notes, searchTerm) {
 
 renderNotes(notes, '')
 
-
 document.querySelector('#create-note').addEventListener('click', function () {
   console.log('create note')
 })
@@ -35,7 +34,6 @@ document.querySelector('#search-text').addEventListener('input', function (e) {
   renderNotes(notes, e.target.value)
 })
 
-document.querySelector('#for-fun').addEventListener('change', function (e) {
-  console.log(e.target.checked)
-  console.log(e);
+document.querySelector('#filter-by').addEventListener('change', function (e) {
+  console.log(e.target.value);
 })
