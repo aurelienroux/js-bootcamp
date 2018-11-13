@@ -28,11 +28,21 @@ const renderTodos = function (todos, filters) {
 
   document.querySelector('#summary').appendChild(createSummaryDOM(uncompletedTodos))
   document.querySelector('#todos').innerHTML = ''
-  
+
   let finalArray = filters.hideCompleted ? uncompletedTodos : filteredTodos
   finalArray.forEach(function (todo, index) {
     document.querySelector('#todos').appendChild(generateTodoDOM(todo, index))
   })
+}
+
+const removeTodo = function (todoId) {
+  const todoIndex = todos.findIndex(function (todo) {
+    return todo.id === todoId
+  })
+
+  if (todoIndex > -1) {
+    todos.splice(todoIndex, 1)
+  }
 }
 
 // get the DOM element for an individual note
@@ -40,19 +50,25 @@ const generateTodoDOM = function (todo) {
   const todoEl = document.createElement('div')
   const todoCheck = document.createElement('input')
   const todoText = document.createElement('span')
-  const todoBtn = document.createElement('button')
+  const removeBtn = document.createElement('button')
 
   // create checkbox
   todoCheck.setAttribute('type', 'checkbox')
   todoEl.appendChild(todoCheck)
-  
+
   // create note text
   todoText.textContent = `${todo.text}`
   todoEl.appendChild(todoText)
-  
+
   // create delete button
-  todoBtn.textContent = 'delete'
-  todoEl.appendChild(todoBtn)
+  removeBtn.textContent = 'delete'
+  todoEl.appendChild(removeBtn)
+
+  removeBtn.addEventListener('click', function () {
+    removeTodo(todo.id)
+    saveTodos(todos)
+    renderTodos(todos, filters)
+  })
 
   return todoEl
 }

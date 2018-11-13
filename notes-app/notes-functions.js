@@ -12,8 +12,19 @@ const getSavedNotes = function () {
 }
 
 // save notes to localStorage
-const saveNotes = function(notes) {
+const saveNotes = function (notes) {
   localStorage.setItem('notes', JSON.stringify(notes))
+}
+
+// remove specific note from the list
+const removeNote = function (noteId) {
+  const noteIndex = notes.findIndex(function (note) {
+    return note.id === noteId
+  })
+
+  if (noteIndex > -1) {
+    notes.splice(noteIndex, 1)
+  }
 }
 
 // generate DOM structure for a note
@@ -25,6 +36,11 @@ const generateDOM = function (note) {
   // set up remove button
   button.textContent = 'x'
   noteEl.appendChild(button)
+  button.addEventListener('click', function () {
+    removeNote(note.id)
+    saveNotes(notes)
+    renderNotes(notes, filters)
+  })
 
   // set note title text
   if (note.title > 0) {
