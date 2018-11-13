@@ -1,3 +1,5 @@
+'use strict'
+
 // fetch existing todos from localStorage
 const getSavedTodos = function () {
   const JSONtodos = localStorage.getItem('todos')
@@ -34,10 +36,24 @@ const renderTodos = function (todos, filters) {
 }
 
 // get the DOM element for an individual note
-const generateTodoDOM = function (todo, index) {
-  todoEl = document.createElement('p')
-  todoPosition = index + 1
-  todoEl.textContent = `${todoPosition}. ${todo.text}`
+const generateTodoDOM = function (todo) {
+  const todoEl = document.createElement('div')
+  const todoCheck = document.createElement('input')
+  const todoText = document.createElement('span')
+  const todoBtn = document.createElement('button')
+
+  // create checkbox
+  todoCheck.setAttribute('type', 'checkbox')
+  todoEl.appendChild(todoCheck)
+  
+  // create note text
+  todoText.textContent = `${todo.text}`
+  todoEl.appendChild(todoText)
+  
+  // create delete button
+  todoBtn.textContent = 'delete'
+  todoEl.appendChild(todoBtn)
+
   return todoEl
 }
 
