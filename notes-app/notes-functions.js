@@ -69,7 +69,6 @@ const renderNotes = function (notes, filters) {
   })
 }
 
-const day = moment()
-day.year(1981).month(3).date(2)
-
-console.log(day.format('MMM DD, YYYY'));
+const lastEditedDate = function (timeStamp) {
+  return `Last edited ${moment(timeStamp).fromNow()}`
+}
