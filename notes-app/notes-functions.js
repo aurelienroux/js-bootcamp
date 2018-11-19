@@ -68,3 +68,8 @@ const renderNotes = function (notes, filters) {
     notesContainer.appendChild(noteEl)
   })
 }
+
+const day = moment()
+day.year(1981).month(3).date(2)
+
+console.log(day.format('MMM DD, YYYY'));
