@@ -12,32 +12,28 @@ const getSavedTodos = function () {
 }
 
 // save todos to localStorage
-const saveTodos = function (todos) {
+const saveTodos = (todos) => {
   localStorage.setItem('todos', JSON.stringify(todos))
 }
 
 // render application todos based on filters
-const renderTodos = function (todos, filters) {
-  const filteredTodos = todos.filter(function (todo) {
-    return todo.text.toLowerCase().includes(filters.searchTerm.toLowerCase())
-  })
+const renderTodos = (todos, filters) => {
+  const filteredTodos = todos.filter((todo) => todo.text.toLowerCase().includes(filters.searchTerm.toLowerCase()))
 
-  const uncompletedTodos = filteredTodos.filter(function (todo) {
-    return !todo.completed
-  })
+  const uncompletedTodos = filteredTodos.filter((todo) => !todo.completed)
 
   document.querySelector('#summary').appendChild(createSummaryDOM(uncompletedTodos))
   document.querySelector('#todos').innerHTML = ''
 
   let finalArray = filters.hideCompleted ? uncompletedTodos : filteredTodos
-  finalArray.forEach(function (todo, index) {
+  finalArray.forEach((todo, index) => {
     document.querySelector('#todos').appendChild(generateTodoDOM(todo, index))
   })
 }
 
 // remove todo by id
-const removeTodo = function (todoId) {
-  const todoIndex = todos.findIndex(function (todo) {
+const removeTodo = (todoId) => {
+  const todoIndex = todos.findIndex((todo) => {
     return todo.id === todoId
   })
   if (todoIndex > -1) {
@@ -46,17 +42,15 @@ const removeTodo = function (todoId) {
 }
 
 // toggle completed value for a given todo
-const toggleTodo = function (todoId) {
-  let todo = todos.find(function (todo) {
-    return todo.id === todoId
-  })
+const toggleTodo = (todoId) => {
+  let todo = todos.find((todo) => todo.id === todoId)
   if (todo !== undefined) {
     todo.completed = !todo.completed
   }
 }
 
 // get the DOM element for an individual note
-const generateTodoDOM = function (todo) {
+const generateTodoDOM = (todo) => {
   const todoEl = document.createElement('div')
   const todoCheck = document.createElement('input')
   const todoText = document.createElement('span')
@@ -67,7 +61,7 @@ const generateTodoDOM = function (todo) {
   todoCheck.checked = todo.completed
   todoEl.appendChild(todoCheck)
 
-  todoCheck.addEventListener('change', function () {
+  todoCheck.addEventListener('change', () => {
     toggleTodo(todo.id)
     saveTodos(todos)
     renderTodos(todos, filters)
@@ -81,7 +75,7 @@ const generateTodoDOM = function (todo) {
   removeBtn.textContent = 'delete'
   todoEl.appendChild(removeBtn)
 
-  removeBtn.addEventListener('click', function () {
+  removeBtn.addEventListener('click', () => {
     removeTodo(todo.id)
     saveTodos(todos)
     renderTodos(todos, filters)
@@ -91,7 +85,7 @@ const generateTodoDOM = function (todo) {
 }
 
 // get the DOM elements for list summary
-const createSummaryDOM = function (uncompletedTodos) {
+const createSummaryDOM = (uncompletedTodos) => {
   document.querySelector('#summary').innerHTML = ''
   const summary = document.createElement('h3')
   summary.textContent = `You have ${uncompletedTodos.length} todos left`

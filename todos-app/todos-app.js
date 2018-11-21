@@ -7,17 +7,17 @@ const filters = {
 
 renderTodos(todos, filters)
 
-document.querySelector('#search-todos').addEventListener('input', function (e) {
+document.querySelector('#search-todos').addEventListener('input', (e) => {
   filters.searchTerm = e.target.value
   renderTodos(todos, filters)
 })
 
-document.querySelector('#hide-completed').addEventListener('change', function (e) {
+document.querySelector('#hide-completed').addEventListener('change', (e) => {
   filters.hideCompleted = e.currentTarget.checked
   renderTodos(todos, filters)
 })
 
-document.querySelector('#add-todos').addEventListener('submit', function (e) {
+document.querySelector('#add-todos').addEventListener('submit', (e) => {
   e.preventDefault()
   if (e.target.elements.todoName.value.length > 0) {
     todos.push({
