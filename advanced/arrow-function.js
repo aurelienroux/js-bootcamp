@@ -14,7 +14,7 @@ const people = [{
   name: 'David',
   age: 39
 }, {
-  nae: 'Aure',
+  name: 'Aure',
   age: 37
 }]
 
