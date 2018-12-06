@@ -7,7 +7,7 @@ const getTip = (amount) => {
 }
 
 try {
-  console.log(getTip(1));
+  console.log(getTip(true));
 } catch (e) {
-  console.log('catch blog is running')
+  console.log('Catch blog is running: ', e)
 }
