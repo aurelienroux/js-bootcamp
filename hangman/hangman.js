@@ -3,6 +3,7 @@ const Hangman = function (word, remaininGuesses) {
   this.remaininGuesses = remaininGuesses
   this.guessedLetters = []
   this.status = 'playing'
+  this.message = `Playing. Guesses left ${this.remaininGuesses}`
 }
 
 Hangman.prototype.getPuzzle = function () {
@@ -23,6 +24,10 @@ Hangman.prototype.makeGuess = function (guessedLetter) {
   const isUnique = !this.guessedLetters.includes(guessedLetter);
   const isBadGuess = !this.lettersArray.includes(guessedLetter);
 
+  if (this.status !== 'playing') {
+    return;
+  }
+
   if (isUnique) {
     this.guessedLetters.push(guessedLetter)
   }
@@ -32,6 +37,7 @@ Hangman.prototype.makeGuess = function (guessedLetter) {
   }
 
   this.statusUpdate()
+  this.printMessage()
 }
 
 Hangman.prototype.statusUpdate = function () {
@@ -45,5 +51,16 @@ Hangman.prototype.statusUpdate = function () {
 
   if (this.remaininGuesses === 0) {
     this.status = 'failed'
+  }
+}
+
+Hangman.prototype.printMessage = function () {
+
+  if (this.status === 'playing') {
+    return `Playing. guesses left: ${this.remaininGuesses}`
+  } else if (this.status === 'failed') {
+    return `Nice try. word was "${this.lettersArray.join('')}"`
+  } else {
+    return `Great!`
   }
 }
