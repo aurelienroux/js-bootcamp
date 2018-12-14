@@ -18,8 +18,35 @@ class Person {
     this.lastName = names[1]
   }
 }
-const me = new Person('Aure', 'Roux', 37, ['fitness', 'guitar'])
-const Dadou = new Person('Dadou', 'Roux', 38)
 
+class Employee extends Person {
+  constructor(firstName, lastName, age, position, likes) {
+    super(firstName, lastName, age, likes)
+    this.position = position
+  }
+  getBio() {
+    return `${this.firstName} ${this.lastName} is a ${this.position}`
+  }
+  getYearsLeft() {
+    return 65 - this.age
+  }
+}
+
+class Student extends Person {
+  constructor(firstName, lastName, age, grade, likes) {
+    super(firstName, lastName, age, likes)
+    this.grade = grade
+  }
+  getBio() {
+    const status = this.grade >= 70 ? 'passing' : 'failing'
+    return `${this.firstName} is ${status} the class`
+  }
+  updateGrade(change) {
+    return this.grade += change
+  }
+}
+
+const me = new Student('Aure', 'Roux', 37, 76, ['guitar'])
 console.log(me.getBio());
-console.log(Dadou.getBio());
+me.updateGrade(-50)
+console.log(me.getBio());
