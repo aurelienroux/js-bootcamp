@@ -7,7 +7,7 @@ class Hangman {
     this.message = `Playing. Guesses left ${this.remaininGuesses}`
   }
 
-  getPuzzle() {
+  get puzzle() {
     let puzzle = ''
     this.lettersArray.forEach(letter => {
       if (this.guessedLetters.includes(letter) || letter === ' ') {
@@ -33,12 +33,11 @@ class Hangman {
       this.remaininGuesses--
     }
     this.statusUpdate()
-    this.printMessage()
   }
 
   statusUpdate() {
     const win = this.lettersArray.every((letter) => {
-      return this.guessedLetters.indexOf(letter) > -1
+      return this.guessedLetters.indexOf(letter) > -1 || letter === ' '
     })
     if (win && this.remaininGuesses >= 1) {
       this.status = 'finished'
@@ -48,7 +47,7 @@ class Hangman {
     }
   }
 
-  printMessage() {
+  get statusMessage() {
     if (this.status === 'playing') {
       return `Playing. guesses left: ${this.remaininGuesses}`
     } else if (this.status === 'failed') {
