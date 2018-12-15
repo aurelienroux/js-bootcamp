@@ -13,8 +13,8 @@ window.addEventListener('keypress', function (e) {
   guessesNode.textContent = game1.statusMessage
 })
 
-const request = new XMLHttpRequest()
 
+const request = new XMLHttpRequest()
 request.addEventListener('readystatechange', (e) => {
   if (e.target.readyState === 4 && e.target.status === 200) {
     const data = JSON.parse(e.target.responseText)
@@ -23,6 +23,19 @@ request.addEventListener('readystatechange', (e) => {
     console.log('error');
   }
 })
-
 request.open('GET', 'http://puzzle.mead.io/puzzle?wordCount=3')
 request.send()
+
+
+const countryRequest = new XMLHttpRequest()
+countryRequest.addEventListener('readystatechange', (e) => {
+  if (e.target.readyState === 4 && e.target.status === 200) {
+    const data = JSON.parse(e.target.responseText)
+    country = data.find(el => el.alpha2Code === 'CA')
+    console.log(country.name);
+  } else if (e.target.readyState === 4) {
+    console.log('unable to fecth data');
+  }
+})
+countryRequest.open('GET', 'http://restcountries.eu/rest/v2/all')
+countryRequest.send()
