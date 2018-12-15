@@ -12,3 +12,15 @@ window.addEventListener('keypress', function (e) {
   puzzleNode.textContent = game1.puzzle
   guessesNode.textContent = game1.statusMessage
 })
+
+const request = new XMLHttpRequest()
+
+request.addEventListener('readystatechange', function(e) {
+  if (e.target.readyState === 4) {
+    const data = JSON.parse(e.target.responseText)
+    console.log(data.puzzle);
+  }
+})
+
+request.open('GET', 'http://puzzle.mead.io/puzzle')
+request.send()
