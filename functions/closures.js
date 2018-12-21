@@ -1,4 +1,4 @@
-// closer example
+// closure example
 const createCounter = () => {
   let count = 0
   return {
