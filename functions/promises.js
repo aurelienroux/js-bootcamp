@@ -17,7 +17,7 @@ getDataCallback(2, (err, data) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(data);
+        console.log('callback hell', data);
       }
     })
   }
@@ -42,12 +42,12 @@ getDataPromise(2).then((data) => {
   console.log('promise error', err);
 })
 
-getDataPromise('10').then((data) => {
+getDataPromise(10).then((data) => {
   return getDataPromise(data)
 }).then((data) => {
-  return getDataPromise(data)
+  return 'test test'
 }).then((data) => {
-  console.log((data));
+  console.log('last promise return', data);
 }).catch((err) => {
   console.log(err);
 })
