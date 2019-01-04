@@ -10,18 +10,19 @@ const getPuzzle = (wordCount) => {
   })
 }
 
-
-const getCountry = (countryCode) => new Promise((res, rej) => {
-  const countryRequest = new XMLHttpRequest()
-
-  countryRequest.addEventListener('readystatechange', (e) => {
-    if (e.target.readyState === 4 && e.target.status === 200) {
-      const data = JSON.parse(e.target.responseText)
-      res(data.find(el => el.alpha2Code === countryCode))
-    } else if (e.target.readyState === 4) {
-      rej('Error on getting country')
+const getCountry = (countryCode) => {
+  return fetch(`http://restcountries.eu/rest/v2/all`).then((resp) => {
+    if (resp.status === 200) {
+      return resp.json()
+    } else {
+      throw new Error('unable to fetch country')
+    }
+  }).then((data) => {
+    const specCount = data.find(el => el.alpha2Code === countryCode) 
+    if (specCount) {
+      return specCount.name
+    } else {
+      return data
     }
   })
-  countryRequest.open('GET', 'http://restcountries.eu/rest/v2/all')
-  countryRequest.send()
-})
+}

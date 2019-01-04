@@ -12,8 +12,14 @@ window.addEventListener('keypress', function (e) {
   guessesNode.textContent = game1.statusMessage
 })
 
-getPuzzle('3').then((data) => {
-  console.log(data);
+getPuzzle('3').then((puzzle) => {
+  console.log(puzzle);
+}).catch((err) => {
+  console.log(err);
+})
+
+getCountry('FR').then((country) => {
+  console.log(country);
 }).catch((err) => {
   console.log(err);
 })
