@@ -18,11 +18,16 @@ const getCountry = (countryCode) => {
       throw new Error('unable to fetch country')
     }
   }).then((data) => {
-    const specCount = data.find(el => el.alpha2Code === countryCode) 
-    if (specCount) {
-      return specCount.name
+    return data.find(el => el.alpha2Code === countryCode)
+  })
+}
+
+const getIpAdress = (token) => {
+  return fetch(`https://ipinfo.io/json?token=${token}`).then((resp) => {
+    if (resp.status === 200) {
+      return resp.json()
     } else {
-      return data
+      throw new Error('unable to fetch ip address')
     }
   })
 }
