@@ -1,22 +1,28 @@
 const puzzleNode = document.querySelector('#puzzle')
 const guessesNode = document.querySelector('#guesses')
-const game1 = new Hangman('Car parts', 2)
-
-puzzleNode.textContent = game1.puzzle
-guessesNode.textContent = game1.statusMessage
+const resetButton = document.querySelector('#reset')
+let game
 
 window.addEventListener('keypress', function (e) {
   const guess = String.fromCharCode(e.charCode)
-  game1.makeGuess(guess)
-  puzzleNode.textContent = game1.puzzle
-  guessesNode.textContent = game1.statusMessage
+  game.makeGuess(guess)
+  renderPuzzle()
 })
 
-getPuzzle('3').then((puzzle) => {
-  console.log(puzzle);
-}).catch((err) => {
-  console.log(err);
-})
+const renderPuzzle = () => {
+  puzzleNode.textContent = game.puzzle
+  guessesNode.textContent = game.statusMessage
+}
+
+const startPuzzle = async () => {
+  const puzzle = await getPuzzle('3')
+  game = new Hangman(puzzle, 5)
+  renderPuzzle()
+}
+
+startPuzzle()
+
+resetButton.addEventListener('click', startPuzzle)
 
 getCurrentCountry().then((country) => {
   console.log(country.name);
