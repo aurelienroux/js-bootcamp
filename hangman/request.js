@@ -18,11 +18,17 @@ const getCountry = async (countryCode) => {
   }
 }
 
-const getIpAdress = async (token) => {
-  const response = await fetch(`https://ipinfo.io/json?token=${token}`)
+const getIpAdress = async () => {
+  const response = await fetch(`https://ipinfo.io/json?token=84d007d40f3419`)
   if (response.status === 200) {
     return response.json()
   } else {
     throw new Error('unable to fetch ip address')
   }
+}
+
+const getCurrentCountry = async () => {
+  const address = await getIpAdress()
+  country = await getCountry(address.country)
+  return country
 }

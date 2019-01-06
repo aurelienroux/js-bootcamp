@@ -18,9 +18,7 @@ getPuzzle('3').then((puzzle) => {
   console.log(err);
 })
 
-getIpAdress('84d007d40f3419').then((address) => {
-  return getCountry(address.country)
-}).then((country) => {
+getCurrentCountry().then((country) => {
   console.log(country.name);
 }).catch((err) => {
   console.log(err);
