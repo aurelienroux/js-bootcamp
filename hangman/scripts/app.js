@@ -10,8 +10,14 @@ window.addEventListener('keypress', function (e) {
 })
 
 const renderPuzzle = () => {
-  puzzleNode.textContent = game.puzzle
+  puzzleNode.innerHTML = ''
   guessesNode.textContent = game.statusMessage
+
+  game.puzzle.split('').forEach((letter) => {
+    const letterEl = document.createElement('span')
+    letterEl.textContent = letter
+    puzzleNode.appendChild(letterEl)
+  })
 }
 
 const startPuzzle = async () => {
@@ -24,8 +30,8 @@ startPuzzle()
 
 resetButton.addEventListener('click', startPuzzle)
 
-getCurrentCountry().then((country) => {
-  console.log(country.name);
-}).catch((err) => {
-  console.log(err);
-})
+// getCurrentCountry().then((country) => {
+//   console.log(country.name);
+// }).catch((err) => {
+//   console.log(err);
+// })
