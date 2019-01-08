@@ -27,18 +27,9 @@ const removeNote = (noteId) => {
 
 // generate DOM structure for a note
 const generateDOM = (note) => {
-  const noteEl = document.createElement('div')
-  const textEl = document.createElement('a')
-  const button = document.createElement('button')
-
-  // set up remove button
-  button.textContent = 'x'
-  noteEl.appendChild(button)
-  button.addEventListener('click', () => {
-    removeNote(note.id)
-    saveNotes(notes)
-    renderNotes(notes, filters)
-  })
+  const noteEl = document.createElement('a')
+  const textEl = document.createElement('p')
+  const statusEl = document.createElement('p')
 
   // set note title text
   if (note.title.length > 0) {
@@ -46,8 +37,17 @@ const generateDOM = (note) => {
   } else {
     textEl.textContent = 'Unnamed note'
   }
-  textEl.setAttribute('href', `/edit.html#${note.id}`)
+  textEl.classList.add('list-item__title')
   noteEl.appendChild(textEl)
+
+  // Setup the link
+  noteEl.setAttribute('href', `/edit.html#${note.id}`)
+  noteEl.classList.add('list-item')
+
+  // Setup status message
+  statusEl.textContent = lastEditedDate(note.updatedAt)
+  statusEl.classList.add('list-item__subtitle')
+  noteEl.appendChild(statusEl)
 
   return noteEl
 }
@@ -93,14 +93,21 @@ const sortNotes = (notes, sortBy) => {
 const renderNotes = (notes, filters) => {
   notes = sortNotes(notes, filters.sortBy)
   const filteredNotes = notes.filter((note) => note.title.toLowerCase().includes(filters.searchTerm.toLowerCase()))
-
   const notesContainer = document.querySelector('#notes-container')
+
   notesContainer.innerHTML = ''
 
-  filteredNotes.forEach((note) => {
-    const noteEl = generateDOM(note)
-    notesContainer.appendChild(noteEl)
-  })
+  if (filteredNotes.length > 0) {
+    filteredNotes.forEach((note) => {
+      const noteEl = generateDOM(note)
+      notesContainer.appendChild(noteEl)
+    })
+  } else {
+    const emptyMessage = document.createElement('p')
+    emptyMessage.textContent = 'there are no notes for the moment'
+    emptyMessage.classList.add('empty-message')
+    notesContainer.appendChild(emptyMessage)
+  }
 }
 
 const lastEditedDate = (timeStamp) => `Last edited ${moment(timeStamp).fromNow()}`
