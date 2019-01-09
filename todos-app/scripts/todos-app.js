@@ -20,11 +20,13 @@ document.querySelector('#hide-completed').addEventListener('change', (e) => {
 })
 
 document.querySelector('#add-todos').addEventListener('submit', (e) => {
+  const text = e.target.elements.todoName.value.trim()
+
   e.preventDefault()
-  if (e.target.elements.todoName.value.length > 0) {
+  if (text.length > 0) {
     todos.push({
       id: uuidv4(),
-      text: e.target.elements.todoName.value,
+      text,
       completed: false
     })
     saveTodos(todos)
