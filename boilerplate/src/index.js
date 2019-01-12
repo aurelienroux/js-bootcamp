@@ -1,10 +1,7 @@
-const name = "Aure"
-console.log(name);
+import { add, name } from './utilities'
+import { scream } from "./scream";
 
-class Hangman {
-  myMethod() {
-    return 'Testing'
-  }
-}
-const hangman = new Hangman()
-console.log(hangman.myMethod());
+console.log('index');
+console.log(add(3,5));
+console.log('index', name);
+console.log(scream('scream function'));
