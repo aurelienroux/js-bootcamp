@@ -1,5 +1,9 @@
 console.log('utilities');
 
-export const add = (a, b) => a + b
+const add = (a, b) => a + b
 
-export const name = "aure"
+const name = "aure"
+
+const square = (x) => x * x
+
+export { add, name, square as default }
