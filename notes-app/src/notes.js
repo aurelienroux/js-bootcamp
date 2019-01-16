@@ -34,6 +34,8 @@ const createNote = () => {
     updatedAt: timeStamp
   })
   saveNotes()
+
+  return id
 }
 
 // remove specific note from the list
@@ -98,16 +100,11 @@ const updateNote = (id, updates) => {
     note.body = updates.body
     note.updatedAt = moment().valueOf()
   }
-
   saveNotes()
+
+  return note
 }
 
 notes = loadNotes()
 
-export {
-  getNotes,
-  createNote,
-  removeNote,
-  sortNotes,
-  updateNote
-}
+export { getNotes, createNote, removeNote, sortNotes, updateNote }
