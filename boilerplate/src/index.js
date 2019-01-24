@@ -7,3 +7,9 @@ const printTeam = (teamName, coach, ...players) => {
 }
 
 printTeam('Liberty', 'Casey Penn', 'Marge', 'Aiden', 'Herbert', 'Sherry')
+
+cities = ['Bordeaux', 'Lyon', 'Frejus']
+citiesBis = ['Nantes', ...cities]
+
+console.log(cities);
+console.log(citiesBis);
