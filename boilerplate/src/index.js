@@ -1,3 +1,4 @@
+// rest syntax parameters **********************************
 const printTeam = (teamName, coach, ...players) => {
   console.log(`
   Team: ${teamName}
@@ -28,7 +29,7 @@ let newHouse = {
 console.log(house);
 console.log(newHouse);
 
-
+// spread operator **********************************
 const person = {
   name: 'Aure',
   age: 37
@@ -47,3 +48,28 @@ const completePerson = {
 console.log(person);
 console.log(location);
 console.log(completePerson);
+
+// destructuring **********************************
+const myObj = {
+  name: 'obj one',
+  completed: false,
+  text: 'example'
+}
+
+const printObj = ({ name, completed }) => {
+  console.log(`${name} and ${completed} printed`)
+}
+printObj(myObj)
+
+const { name: fullName, details = 'hello', ...other } = myObj
+
+console.log(fullName);
+console.log(details);
+console.log(other);
+
+const age = [65, 10, 35, 44]
+// const [firstAge, secondAge, , lastAge] = age
+const [firstAge, ...otherAges] = age
+
+// console.log(firstAge, secondAge, lastAge);
+console.log(firstAge, otherAges);

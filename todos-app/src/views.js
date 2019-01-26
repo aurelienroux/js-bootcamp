@@ -5,15 +5,15 @@ import { getFilters } from './filters'
 // Arguments: none
 // Return value: none
 const renderTodos = () => {
-  const filters = getFilters()
-  const filteredTodos = getTodos().filter((todo) => todo.text.toLowerCase().includes(filters.searchTerm.toLowerCase()))
+  const { searchTerm, hideCompleted } = getFilters()
+  const filteredTodos = getTodos().filter((todo) => todo.text.toLowerCase().includes(searchTerm.toLowerCase()))
   const uncompletedTodos = filteredTodos.filter((todo) => !todo.completed)
   const todosEl = document.querySelector('#todos')
 
   document.querySelector('#summary').appendChild(createSummaryDOM(uncompletedTodos))
   todosEl.innerHTML = ''
 
-  let finalArray = filters.hideCompleted ? uncompletedTodos : filteredTodos
+  let finalArray = hideCompleted ? uncompletedTodos : filteredTodos
 
   if (finalArray.length > 0) {
     finalArray.forEach((todo, index) => {
